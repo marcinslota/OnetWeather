@@ -54,7 +54,7 @@ public class WeatherWidgetTest {
     }
 
     @Test
-    public void shouldCheckIfTemperatureInWidgetAndOnActualTimeDivAreEquals() {
+    public void shouldCheckIfTempInWidgetIsEqualToTempOnActualTimeDiv() {
         int tempInWidget = Integer.parseInt($(".temp").getText().substring(0,2));
         int tempOnActualTimeDiv = Integer.parseInt($(By.className("swiper-slide-active")).$("div.temp").getText().substring(0,2));
         Assert.assertEquals(tempInWidget, tempOnActualTimeDiv);
