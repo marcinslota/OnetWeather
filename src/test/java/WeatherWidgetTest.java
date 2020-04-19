@@ -46,18 +46,18 @@ public class WeatherWidgetTest {
     }
 
     @Test
-    public void shouldCheckIfLocationChangedToTychy() {
-        $(By.name("locationSearch")).waitUntil(visible,3000).setValue("Tychy");
+    public void shouldCheckIfLocationChangedToSiemianowice() {
+        $(By.name("locationSearch")).waitUntil(visible,3000).setValue("Siemianowice");
         WebElement dynamicElement = (new WebDriverWait(getWebDriver(),10)).until(ExpectedConditions.elementToBeClickable($("div.autocomplete-suggestions").$("div.autocomplete-suggestion")));
         dynamicElement.click();
-        $(".mainName ").shouldHave(text("Pogoda Tychy"));
+        $(".mainName ").shouldHave(text("Pogoda Siemianowice"));
     }
 
     @Test
     public void shouldCheckTemperatureInWidgetAndOnTodayDiv() {
-        int temp = Integer.parseInt($(".temp").getText().substring(0,2));
-        int temp2 = Integer.parseInt($(By.className("swiper-slide-active")).$("div.temp").getText().substring(0,2));
-        Assert.assertEquals("Temperature "+ temp + " in main widget should be equal to temperature " + temp2 + " in actual time.", temp, temp2);
+        int tempInWidget = Integer.parseInt($(".temp").getText().substring(0,2));
+        int tempOnTodayDiv = Integer.parseInt($(By.className("swiper-slide-active")).$("div.temp").getText().substring(0,2));
+        Assert.assertEquals(tempInWidget, tempOnTodayDiv);
     }
 
     @Test
