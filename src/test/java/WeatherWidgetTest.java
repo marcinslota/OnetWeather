@@ -54,24 +54,24 @@ public class WeatherWidgetTest {
     }
 
     @Test
-    public void shouldCheckTemperatureInWidgetAndOnActualTimeDiv() {
+    public void shouldCheckIfTemperatureInWidgetAndOnActualTimeDivAreEquals() {
         int tempInWidget = Integer.parseInt($(".temp").getText().substring(0,2));
         int tempOnActualTimeDiv = Integer.parseInt($(By.className("swiper-slide-active")).$("div.temp").getText().substring(0,2));
         Assert.assertEquals(tempInWidget, tempOnActualTimeDiv);
     }
 
     @Test
-    public void shouldCheckAirQuality(){
+    public void shouldCheckIfAirQualityIsGood(){
         $(By.className("pollutionIconDesc")).shouldHave(text("DOBRA"));
     }
 
     @Test
-    public void shouldCheckIfImageLoaded(){
+    public void shouldCheckIfAirQualityImageIsLoaded(){
         $(By.className("mood_1")).shouldBe(visible);
     }
 
     @Test
-    public void shouldCheckIfLongterm(){
+    public void shouldCheckIfLongtermTitleChanged(){
         $(By.className("longTermWeather")).click();
         $(By.className("seoTitle")).shouldHave(text("DŁUGOTERMINOWA"));
     }
