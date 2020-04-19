@@ -35,10 +35,10 @@ public class WeatherWidgetTest {
     public void prepareSite(){
         open("https://pogoda.onet.pl");
         AcceptCookies();
-        //WebDriverWait wait = new WebDriverWait(getWebDriver(),3);
         $(By.name("locationSearch")).waitUntil(visible,3000);
         settingLocationToKatowice();
     }
+
 
     @Test
     public void shouldCheckIfLocationIsKatowice() {
@@ -46,8 +46,8 @@ public class WeatherWidgetTest {
     }
 
     @Test
-    public void shouldCheckIfLocationIsChanged() {
-        $(By.name("locationSearch")).setValue("Tychy");
+    public void shouldCheckIfLocationChangedToTychy() {
+        $(By.name("locationSearch")).waitUntil(visible,3000).setValue("Tychy");
         WebElement dynamicElement = (new WebDriverWait(getWebDriver(),10)).until(ExpectedConditions.elementToBeClickable($("div.autocomplete-suggestions").$("div.autocomplete-suggestion")));
         dynamicElement.click();
         $(".mainName ").shouldHave(text("Pogoda Tychy"));
@@ -57,7 +57,7 @@ public class WeatherWidgetTest {
     public void shouldCheckTemperatureInWidgetAndOnTodayDiv() {
         int temp = Integer.parseInt($(".temp").getText().substring(0,2));
         int temp2 = Integer.parseInt($(By.className("swiper-slide-active")).$("div.temp").getText().substring(0,2));
-        Assert.assertEquals("Temperature " + temp + " in main widget should be equal to temperature " + temp2 + " in actual time.", temp, temp2);
+        Assert.assertEquals("Temperature "+ temp + " in main widget should be equal to temperature " + temp2 + " in actual time.", temp, temp2);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class WeatherWidgetTest {
 
     @Test
     public void shouldCheckIfLongterm(){
-        $(By.className("longTermWeather")).waitUntil(visible,3000).click();
+        $(By.className("longTermWeather")).click();
         $(By.className("boxTitle")).shouldHave(text("DŁUGOTERMINOWA"));
     }
 
