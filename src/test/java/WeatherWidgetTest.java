@@ -54,10 +54,10 @@ public class WeatherWidgetTest {
     }
 
     @Test
-    public void shouldCheckTemperatureInWidgetAndOnTodayDiv() {
+    public void shouldCheckTemperatureInWidgetAndOnActualTimeDiv() {
         int tempInWidget = Integer.parseInt($(".temp").getText().substring(0,2));
-        int tempOnTodayDiv = Integer.parseInt($(By.className("swiper-slide-active")).$("div.temp").getText().substring(0,2));
-        Assert.assertEquals(tempInWidget, tempOnTodayDiv);
+        int tempOnActualTimeDiv = Integer.parseInt($(By.className("swiper-slide-active")).$("div.temp").getText().substring(0,2));
+        Assert.assertEquals(tempInWidget, tempOnActualTimeDiv);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class WeatherWidgetTest {
     @Test
     public void shouldCheckIfLongterm(){
         $(By.className("longTermWeather")).click();
-        $(By.className("boxTitle")).shouldHave(text("DŁUGOTERMINOWA"));
+        $(By.className("seoTitle")).shouldHave(text("DŁUGOTERMINOWA"));
     }
 
     @After
